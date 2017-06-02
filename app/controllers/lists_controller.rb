@@ -1,8 +1,6 @@
 class ListsController < ApplicationController
   def index
-    respond_to do |format|
-      format.json { render json: List.all }
-    end
+    @lists = List.all
   end
 
   def show

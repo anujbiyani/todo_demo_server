@@ -21,6 +21,31 @@ RSpec.describe '/lists' do
 
       expect(response_body.length).to eq 2
     end
+
+    it 'includes the list items' do
+      list = FactoryGirl.create(:list, name: 'My To-Do List')
+      FactoryGirl.create(:item, list: list, name: 'Buy thing 1')
+      FactoryGirl.create(:item, list: list, name: 'Buy thing 2', done: true)
+
+      get "/lists.json"
+
+      expect(response_body).to match_json_expression(
+        [
+          {
+            items: [
+              {
+                name: 'Buy thing 1',
+                done: false
+              }.ignore_extra_keys,
+              {
+                name: 'Buy thing 2',
+                done: true
+              }.ignore_extra_keys
+            ]
+          }.ignore_extra_keys
+        ]
+      )
+    end
   end
 
   describe 'GET /list/:id' do
