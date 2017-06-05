@@ -1,24 +1,9 @@
-# README
+# Todo Demo App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Server for the [client app](https://github.com/anujbiyani/todo_demo_client).
 
-Things you may want to cover:
+## Running it
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. `bundle install`
+1. `bundle exec rake db:setup`
+1. `bundle exec rails server`
